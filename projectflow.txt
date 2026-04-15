@@ -1,0 +1,40 @@
+1. Create repo, clone it in local
+2. Create a virtual environment named 'serverless' - conda create -n serverless python=3.10
+3. Activate the virtual environment - conda activate serverless
+4. copy the provided requirements.txt file and do "pip install -r requirements.txt"
+5. Create a GROQ api key from -> "https://console.groq.com/keys" [or create-use openai api]
+6. Set below variables from pwoershell -
+   $env:LLM_PROVIDER="groq"
+   $env:GROQ_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        OR
+   $env:LLM_PROVIDER="openai"
+   $env:OPENAI_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+7. Create "input_files" folder and add a txt file
+8. Add summarizer.py and run the code in local 
+9. For production work -> add app.py, Dockerfile
+10. Starting work on cicd pipeline:
+    mkdir -p .github/workflows
+    New-Item -ItemType File -Path ".github/workflows/cicd.yaml" -Force
+    declare your region on the cicd file
+    we'll use steps only till "Build, tag, and push Docker image"
+11. Create an IAM user and add below secrets and var to githubactions:
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+12. Create ECR repo (text-summarizer)
+13. Now run the cicd pipeline (excluding lambda part)
+14. Upon success -> Create Lambda function (text-summarizer-func)
+    Run CICD completely
+15. create s3 (lambda-genai-bucket-2) -> then create folder called input/ & output/ then 
+    go to lambda func and add trigger (Event types - PUT)
+16. Go to Lambda Function -> Configuration -> permission -> role -> add permission -> adminaccess
+    Go to Lambda Function -> Configuration -> env variables -> add:
+    LLM_PROVIDER=groq
+    GROQ_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+17. Upload a txt file to input folder and go to cloudwatch to see logs
+
+18. Delete below AWS resources:
+    IAM User
+    ECR Bucket
+    S3
+    Lambda Function
