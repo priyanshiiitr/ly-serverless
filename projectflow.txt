@@ -17,7 +17,7 @@
     New-Item -ItemType File -Path ".github/workflows/cicd.yaml" -Force
     declare your region on the cicd file
     we'll use steps only till "Build, tag, and push Docker image"
-    
+
 11. Create an IAM user and add below secrets and var to githubactions:
     AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY
@@ -31,7 +31,6 @@
 
 15. create s3 (lambda-genai-bucket-2) -> then create folder called input/ & output/ then 
     go to lambda func and add trigger (Event types - PUT)
-
 16. Go to Lambda Function -> Configuration -> permission -> role -> add permission -> adminaccess
     Go to Lambda Function -> Configuration -> env variables -> add:
     LLM_PROVIDER=groq
