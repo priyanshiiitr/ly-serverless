@@ -20,7 +20,7 @@
 11. Create an IAM user and add below secrets and var to githubactions:
     AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY
-12. Create ECR repo (text-summarizer)
+12. Create ECR  repo (text-summarizer)
 13. Now run the cicd pipeline (excluding lambda part)
 14. Upon success -> Create Lambda function (text-summarizer-func)
     Run CICD completely
